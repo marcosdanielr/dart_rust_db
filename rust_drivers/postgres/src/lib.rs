@@ -47,4 +47,16 @@ mod tests {
 
         assert!(success, "Failed to connect to the PostgreSQL");
     }
+
+    #[test]
+    fn test_failed_postgresql_connection() {
+        let invalid_url = "invalid_url";
+
+        let c_invalid_url = CString::new(invalid_url).expect("Failed to create CString");
+        let ptr_invalid_url = c_invalid_url.as_ptr();
+
+        let success = connect_to_postgresql(ptr_invalid_url);
+
+        assert!(!success, "The connection should fail with an invalid URL");
+    }
 }
