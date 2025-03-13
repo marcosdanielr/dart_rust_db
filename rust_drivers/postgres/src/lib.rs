@@ -29,3 +29,22 @@ pub extern "C" fn connect_to_postgresql(connection_url: *const c_char) -> bool {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::connect_to_postgresql;
+    use std::{env, ffi::CString};
+
+    #[test]
+    fn test_postgresql_connection_success() {
+        let connection_url = env::var("TEST_DATABASE_URL").expect("TEST_DATABASE_URL not set");
+
+        let c_connection_url = CString::new(connection_url).expect("Failed to create CString");
+
+        let ptr_connection_url = c_connection_url.as_ptr();
+
+        let success = connect_to_postgresql(ptr_connection_url);
+
+        assert!(success, "Failed to connect to the PostgreSQL");
+    }
+}
