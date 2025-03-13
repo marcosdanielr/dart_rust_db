@@ -1,5 +1,5 @@
+import 'package:rust_dartbase/src/drivers/postgres_driver.dart';
 import 'package:test/test.dart';
-import 'package:dart_rust_db/src/drivers/postgres_driver.dart';
 import 'dart:io';
 
 void main() {
