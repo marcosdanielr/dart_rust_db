@@ -23,15 +23,15 @@ pub extern "C" fn connect_to_postgresql(connection_url: *const c_char) -> *mut C
 
 #[cfg(test)]
 mod tests {
-
-    use crate::{
-        connect_to_posgresql::connect_to_postgresql,
-        free_postgresql_connection::free_postgresql_connection,
-    };
     use std::{env, ffi::CString};
 
+    use crate::db::{
+        connect_to_postgresql::connect_to_postgresql,
+        free_postgresql_connection::free_postgresql_connection,
+    };
+
     #[test]
-    fn test_postgresql_connection_success() {
+    fn test_connection_success() {
         let connection_url = env::var("TEST_DATABASE_URL").expect("TEST_DATABASE_URL not set");
 
         let c_connection_url = CString::new(connection_url).expect("Failed to create CString");
@@ -49,7 +49,7 @@ mod tests {
     }
 
     #[test]
-    fn test_failed_postgresql_connection() {
+    fn test_failed_connection() {
         let invalid_url = "invalid_url";
 
         let c_invalid_url = CString::new(invalid_url).expect("Failed to create CString");

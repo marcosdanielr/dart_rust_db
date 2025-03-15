@@ -1,3 +1,4 @@
-mod connect_to_posgresql;
-mod execute_query;
-mod free_postgresql_connection;
+mod db;
+mod enums;
+mod ffi;
+mod utils;
