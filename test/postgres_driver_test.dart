@@ -18,7 +18,7 @@ void main() {
     test('connect to PostgreSQL failed', () async {
       final driver = PostgresDriver();
       final connectionString =
-          'postgresql://user:password@host:port/database_inexistente';
+          'postgresql://user:password@host:port/nonexistent_database';
 
       expect(driver.connect(connectionString), throwsA(isA<Exception>()));
     });
