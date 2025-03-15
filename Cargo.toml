@@ -1,4 +1,4 @@
 [workspace]
 members = [
-    "rust_drivers/postgres",
+    "rust_drivers/postgresql",
 ]
